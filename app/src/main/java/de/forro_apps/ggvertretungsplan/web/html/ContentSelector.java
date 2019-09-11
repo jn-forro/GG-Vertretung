@@ -149,13 +149,13 @@ public class ContentSelector {
                             case "Art":
                                 type = j;
                                 break;
-                            case "Vertreter":
+                            case "(Lehrer)":
                                 agent = j;
                                 break;
                             case "Raum":
                                 room = j;
                                 break;
-                            case "Fach":
+                            case "(Fach)":
                                 subject = j;
                                 break;
                             case "Vertr. von":
@@ -184,6 +184,7 @@ public class ContentSelector {
 
                 for (int j = 0; j < tr.getElementsByTag("td").size(); j++) {
                     String tableDataText = tr.getElementsByTag("td").get(j).text();
+                    System.out.println(tableDataText);
                     if (j == classes) {
                         item.setClasses(tableDataText);
                     }
@@ -236,13 +237,13 @@ public class ContentSelector {
                     case "Art":
                         type = i;
                         break;
-                    case "Vertreter":
+                    case "(Lehrer)":
                         agent = i;
                         break;
-                    case "Raum":
+                    case "(Raum)":
                         room = i;
                         break;
-                    case "Fach":
+                    case "(Fach)":
                         subject = i;
                         break;
                     case "Vertr. von":
@@ -251,7 +252,7 @@ public class ContentSelector {
                     case "(Le.) nach":
                         to = i;
                         break;
-                    case "Vertretungs-Text":
+                    case "Text":
                         text = i;
                         break;
                 }
