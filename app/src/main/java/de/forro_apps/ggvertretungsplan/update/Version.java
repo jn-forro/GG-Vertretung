@@ -5,5 +5,5 @@ public class Version {
     /**
      * Current version of GG Vertretungsplan
      */
-    public static final String CURRENT_VERSION = "2.5.0";
+    public static final String CURRENT_VERSION = "2.5.1";
 }

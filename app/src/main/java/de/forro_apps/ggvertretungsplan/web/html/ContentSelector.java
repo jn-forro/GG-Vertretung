@@ -150,12 +150,16 @@ public class ContentSelector {
                                 type = j;
                                 break;
                             case "(Lehrer)":
+                            case "(Vertreter)":
+                            case "Lehrer":
+                            case "Vertreter":
                                 agent = j;
                                 break;
                             case "Raum":
                                 room = j;
                                 break;
                             case "(Fach)":
+                            case "Fach":
                                 subject = j;
                                 break;
                             case "Vertr. von":
@@ -238,12 +242,16 @@ public class ContentSelector {
                         type = i;
                         break;
                     case "(Lehrer)":
+                    case "(Vertreter)":
+                    case "Lehrer":
+                    case "Vertreter":
                         agent = i;
                         break;
-                    case "(Raum)":
+                    case "Raum":
                         room = i;
                         break;
                     case "(Fach)":
+                    case "Fach":
                         subject = i;
                         break;
                     case "Vertr. von":
@@ -253,6 +261,7 @@ public class ContentSelector {
                         to = i;
                         break;
                     case "Text":
+                    case "Vertretungs-Text":
                         text = i;
                         break;
                 }
