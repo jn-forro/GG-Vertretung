@@ -143,9 +143,11 @@ public class ContentSelector {
                             case "Klasse(n)":
                                 classes = j;
                                 break;
+                            case "(Stunde)":
                             case "Stunde":
                                 lesson = j;
                                 break;
+                            case "(Art)":
                             case "Art":
                                 type = j;
                                 break;
@@ -155,6 +157,7 @@ public class ContentSelector {
                             case "Vertreter":
                                 agent = j;
                                 break;
+                            case "(Raum)":
                             case "Raum":
                                 room = j;
                                 break;
@@ -235,9 +238,11 @@ public class ContentSelector {
                     case "Klasse(n)":
                         classes = i;
                         break;
+                    case "(Stunde)":
                     case "Stunde":
                         lesson = i;
                         break;
+                    case "(Art)":
                     case "Art":
                         type = i;
                         break;
@@ -247,6 +252,7 @@ public class ContentSelector {
                     case "Vertreter":
                         agent = i;
                         break;
+                    case "(Raum)":
                     case "Raum":
                         room = i;
                         break;
@@ -260,6 +266,7 @@ public class ContentSelector {
                     case "(Le.) nach":
                         to = i;
                         break;
+                    case "(Text)":
                     case "Text":
                     case "Vertretungs-Text":
                         text = i;
