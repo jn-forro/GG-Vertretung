@@ -53,8 +53,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnTouchList
         setContentView(R.layout.activity_login);
 
 
-        password = (EditText) findViewById(R.id.password);
-        userName = (EditText) findViewById(R.id.userName);
+        password = findViewById(R.id.password);
+        userName = findViewById(R.id.userName);
 
         password.setHint(getString(R.string.password));
         userName.setHint(getString(R.string.userName));
@@ -65,13 +65,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnTouchList
         studentToggleButton.setOnClickListener(this);
         teacherToggleButton.setOnClickListener(this);
 
-        ImageButton show = (ImageButton) findViewById(R.id.showPassword);
+        ImageButton show = findViewById(R.id.showPassword);
         show.setOnTouchListener(this);
 
-        Button confirm = (Button) findViewById(R.id.confirm);
+        Button confirm = findViewById(R.id.confirm);
         confirm.setOnClickListener(this);
 
-        loading = (ProgressBar) findViewById(R.id.progressBar);
+        loading = findViewById(R.id.progressBar);
         loading.setVisibility(View.INVISIBLE);
 
         Database.SQLMethods db = new Database.SQLMethods(getApplicationContext(), null);

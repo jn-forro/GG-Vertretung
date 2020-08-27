@@ -29,8 +29,8 @@ public class OverviewActivity extends AppCompatActivity implements View.OnClickL
 
         setContentView(R.layout.activity_overview);
 
-        TextView todayLastUpdated = (TextView) findViewById(R.id.todayLastUpdate);
-        TextView tomorrowLastUpdated = (TextView) findViewById(R.id.tomorrowLastUpdate);
+        TextView todayLastUpdated = findViewById(R.id.todayLastUpdate);
+        TextView tomorrowLastUpdated = findViewById(R.id.tomorrowLastUpdate);
 
         todayLastUpdated.setText("zuletzt aktualisiert: " + (ContentSelector.getLastUpdated(ContentSelector.Day.TODAY) != null
                 ? "\n" + ContentSelector.getLastUpdated(ContentSelector.Day.TODAY)
@@ -39,8 +39,8 @@ public class OverviewActivity extends AppCompatActivity implements View.OnClickL
                 ? "\n" +  ContentSelector.getLastUpdated(ContentSelector.Day.TOMORROW)
                 : "--"));
 
-        TextView todayDate = (TextView) findViewById(R.id.todayDate);
-        TextView tomorrowDate = (TextView) findViewById(R.id.tomorrowDate);
+        TextView todayDate = findViewById(R.id.todayDate);
+        TextView tomorrowDate = findViewById(R.id.tomorrowDate);
 
         todayDate.setText((ContentSelector.getDate(ContentSelector.Day.TODAY) != null
                 ? ContentSelector.getDate(ContentSelector.Day.TODAY)
@@ -49,7 +49,7 @@ public class OverviewActivity extends AppCompatActivity implements View.OnClickL
                 ? ContentSelector.getDate(ContentSelector.Day.TOMORROW)
                 : "--"));
 
-        TextView ticker = (TextView) findViewById(R.id.ticker);
+        TextView ticker = findViewById(R.id.ticker);
         try {
             ticker.setText(ContentSelector.getTicker());
         } catch (Exception e) {
@@ -57,8 +57,8 @@ public class OverviewActivity extends AppCompatActivity implements View.OnClickL
             ticker.setText("Fehler beim Laden des Tickers");
         }
 
-        todayContainer = (LinearLayout) findViewById(R.id.containerToday);
-        tomorrowContainer = (LinearLayout) findViewById(R.id.containerTomorrow);
+        todayContainer = findViewById(R.id.containerToday);
+        tomorrowContainer = findViewById(R.id.containerTomorrow);
 
         todayContainer.setOnClickListener(this);
         tomorrowContainer.setOnClickListener(this);
