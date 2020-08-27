@@ -14,12 +14,12 @@ import java.nio.charset.Charset;
 public class ContentLoader implements Runnable {
 
     /**
-     * The HTML of the today's substitions
+     * The HTML of the today's substitutions
      */
     public static String TODAY_HTML = "";
 
     /**
-     * The HTML of the tomorrow's substitions
+     * The HTML of the tomorrow's substitutions
      */
     public static String TOMORROW_HTML = "";
 
