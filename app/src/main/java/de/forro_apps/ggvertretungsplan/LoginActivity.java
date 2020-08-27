@@ -12,7 +12,6 @@ import android.widget.*;
 import com.dropbox.core.DbxException;
 import de.forro_apps.ggvertretungsplan.database.Database;
 import de.forro_apps.ggvertretungsplan.occupation.Occupation;
-import de.forro_apps.ggvertretungsplan.occupation.Variable;
 import de.forro_apps.ggvertretungsplan.update.AppInactivity;
 import de.forro_apps.ggvertretungsplan.update.DropboxClient;
 import de.forro_apps.ggvertretungsplan.update.Version;
@@ -83,18 +82,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnTouchList
         if (profession.equalsIgnoreCase("0")) {
             studentToggleButton.setChecked(true);
             teacherToggleButton.setChecked(false);
-            Variable.occupation = Occupation.STUDENT;
+            Occupation.selected = Occupation.STUDENT;
         } else if (profession.equalsIgnoreCase("1")) {
             teacherToggleButton.setChecked(true);
             studentToggleButton.setChecked(false);
-            Variable.occupation = Occupation.TEACHER;
+            Occupation.selected = Occupation.TEACHER;
         } else {
             studentToggleButton.setChecked(true);
             teacherToggleButton.setChecked(false);
-            Variable.occupation = Occupation.STUDENT;
+            Occupation.selected = Occupation.STUDENT;
             profession = "0";
         }
-        Links.setRequiredLinks(Variable.occupation);
+        Links.setRequiredLinks(Occupation.selected);
 
         authFailed = findViewById(R.id.authFailed);
 
@@ -169,26 +168,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnTouchList
                 if (v == teacherToggleButton) {
                     teacherToggleButton.setChecked(true);
                     studentToggleButton.setChecked(false);
-                    Variable.occupation = Occupation.TEACHER;
+                    Occupation.selected = Occupation.TEACHER;
                     profession = "1";
                 } else {
                     teacherToggleButton.setChecked(false);
                     studentToggleButton.setChecked(true);
-                    Variable.occupation = Occupation.STUDENT;
+                    Occupation.selected = Occupation.STUDENT;
                 }
             } else {
                 if (v == studentToggleButton) {
                     teacherToggleButton.setChecked(false);
                     studentToggleButton.setChecked(true);
-                    Variable.occupation = Occupation.STUDENT;
+                    Occupation.selected = Occupation.STUDENT;
                     profession = "0";
                 } else {
                     teacherToggleButton.setChecked(true);
                     studentToggleButton.setChecked(false);
-                    Variable.occupation = Occupation.TEACHER;
+                    Occupation.selected = Occupation.TEACHER;
                 }
             }
-            Links.setRequiredLinks(Variable.occupation);
+            Links.setRequiredLinks(Occupation.selected);
         }
     }
 

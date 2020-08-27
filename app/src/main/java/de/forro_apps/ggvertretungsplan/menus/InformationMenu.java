@@ -81,7 +81,7 @@ public class InformationMenu extends AppCompatActivity {
 
         //
         TextView appInfo = findViewById(R.id.appInformation);
-        appInfo.setText("GG Vertretungsplan (Version " + Version.CURRENT_VERSION + ") \n\u00A9 Jan Niklas Forro 2019");
+        appInfo.setText("GG Vertretungsplan (Version " + Version.CURRENT_VERSION + ") \n\u00A9 Jan Niklas Forro 2020");
 
         Button faq = findViewById(R.id.faqButton);
         faq.setOnClickListener((view) -> {
