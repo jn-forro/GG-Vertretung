@@ -76,11 +76,12 @@ public class ContentSelector {
      *      more script or HTML, only the information divided by linebreaks.
      */
     public static String getTicker() {
-        String res = "";
+        StringBuilder sb = new StringBuilder();
         for(String s : ScriptParser.getInfo(ScriptParser.trim(Jsoup.parse(ContentLoader.TICKER_HTML).getElementsByTag("script").get(0).toString()))) {
-            res += s +"\n";
+            sb.append(s);
+            sb.append("\n");
         }
-        return res;
+        return sb.toString();
     }
 
 
