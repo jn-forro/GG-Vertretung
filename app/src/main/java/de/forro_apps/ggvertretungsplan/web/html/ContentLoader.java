@@ -1,7 +1,6 @@
 package de.forro_apps.ggvertretungsplan.web.html;
 
 import de.forro_apps.ggvertretungsplan.occupation.Occupation;
-import de.forro_apps.ggvertretungsplan.occupation.Variable;
 import de.forro_apps.ggvertretungsplan.web.Links;
 
 import java.io.BufferedReader;
@@ -15,12 +14,12 @@ import java.nio.charset.Charset;
 public class ContentLoader implements Runnable {
 
     /**
-     * The HTML of the today's substitions
+     * The HTML of the today's substitutions
      */
     public static String TODAY_HTML = "";
 
     /**
-     * The HTML of the tomorrow's substitions
+     * The HTML of the tomorrow's substitutions
      */
     public static String TOMORROW_HTML = "";
 
@@ -80,9 +79,9 @@ public class ContentLoader implements Runnable {
             }
 
             System.out.println(1);
-            ContentSelector.sortInformation(ContentSelector.Day.TODAY, Variable.occupation);
+            ContentSelector.sortInformation(ContentSelector.Day.TODAY, Occupation.selected);
             System.out.println(2);
-            ContentSelector.sortInformation(ContentSelector.Day.TOMORROW, Variable.occupation);
+            ContentSelector.sortInformation(ContentSelector.Day.TOMORROW, Occupation.selected);
             System.out.println(3);
 
         } catch (Exception e) {

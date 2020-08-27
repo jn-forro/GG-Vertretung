@@ -6,13 +6,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.*;
 import com.dropbox.core.DbxException;
 import de.forro_apps.ggvertretungsplan.database.Database;
 import de.forro_apps.ggvertretungsplan.occupation.Occupation;
-import de.forro_apps.ggvertretungsplan.occupation.Variable;
 import de.forro_apps.ggvertretungsplan.update.AppInactivity;
 import de.forro_apps.ggvertretungsplan.update.DropboxClient;
 import de.forro_apps.ggvertretungsplan.update.Version;
@@ -54,8 +54,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnTouchList
         setContentView(R.layout.activity_login);
 
 
-        password = (EditText) findViewById(R.id.password);
-        userName = (EditText) findViewById(R.id.userName);
+        password = findViewById(R.id.password);
+        userName = findViewById(R.id.userName);
 
         password.setHint(getString(R.string.password));
         userName.setHint(getString(R.string.userName));
@@ -66,14 +66,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnTouchList
         studentToggleButton.setOnClickListener(this);
         teacherToggleButton.setOnClickListener(this);
 
-        ImageButton show = (ImageButton) findViewById(R.id.showPassword);
+        ImageButton show = findViewById(R.id.showPassword);
         show.setOnTouchListener(this);
 
-        Button confirm = (Button) findViewById(R.id.confirm);
+        Button confirm = findViewById(R.id.confirm);
         confirm.setOnClickListener(this);
 
-        loading = (ProgressBar) findViewById(R.id.progressBar);
+        loading = findViewById(R.id.progressBar);
         loading.setVisibility(View.INVISIBLE);
+
+        password.setOnKeyListener((v, code, event) -> { // Hopefully not only for hardware keyboards
+            if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                    (code == KeyEvent.KEYCODE_ENTER)) {
+                confirm.performClick();
+                return true;
+            }
+            return false;
+        });
 
         Database.SQLMethods db = new Database.SQLMethods(getApplicationContext(), null);
         userName.setText(db.getLoginCredentials()[0]);
@@ -83,18 +92,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnTouchList
         if (profession.equalsIgnoreCase("0")) {
             studentToggleButton.setChecked(true);
             teacherToggleButton.setChecked(false);
-            Variable.occupation = Occupation.STUDENT;
+            Occupation.selected = Occupation.STUDENT;
         } else if (profession.equalsIgnoreCase("1")) {
             teacherToggleButton.setChecked(true);
             studentToggleButton.setChecked(false);
-            Variable.occupation = Occupation.TEACHER;
+            Occupation.selected = Occupation.TEACHER;
         } else {
             studentToggleButton.setChecked(true);
             teacherToggleButton.setChecked(false);
-            Variable.occupation = Occupation.STUDENT;
+            Occupation.selected = Occupation.STUDENT;
             profession = "0";
         }
-        Links.setRequiredLinks(Variable.occupation);
+        Links.setRequiredLinks(Occupation.selected);
 
         authFailed = findViewById(R.id.authFailed);
 
@@ -169,26 +178,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnTouchList
                 if (v == teacherToggleButton) {
                     teacherToggleButton.setChecked(true);
                     studentToggleButton.setChecked(false);
-                    Variable.occupation = Occupation.TEACHER;
+                    Occupation.selected = Occupation.TEACHER;
                     profession = "1";
                 } else {
                     teacherToggleButton.setChecked(false);
                     studentToggleButton.setChecked(true);
-                    Variable.occupation = Occupation.STUDENT;
+                    Occupation.selected = Occupation.STUDENT;
                 }
             } else {
                 if (v == studentToggleButton) {
                     teacherToggleButton.setChecked(false);
                     studentToggleButton.setChecked(true);
-                    Variable.occupation = Occupation.STUDENT;
+                    Occupation.selected = Occupation.STUDENT;
                     profession = "0";
                 } else {
                     teacherToggleButton.setChecked(true);
                     studentToggleButton.setChecked(false);
-                    Variable.occupation = Occupation.TEACHER;
+                    Occupation.selected = Occupation.TEACHER;
                 }
             }
-            Links.setRequiredLinks(Variable.occupation);
+            Links.setRequiredLinks(Occupation.selected);
         }
     }
 

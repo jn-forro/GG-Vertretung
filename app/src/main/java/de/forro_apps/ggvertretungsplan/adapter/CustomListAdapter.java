@@ -2,13 +2,10 @@ package de.forro_apps.ggvertretungsplan.adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.os.Build;
-import android.text.Html;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import de.forro_apps.ggvertretungsplan.occupation.Occupation;
-import de.forro_apps.ggvertretungsplan.occupation.Variable;
 import de.forro_apps.ggvertretungsplan.view.ListDataView;
 import de.forro_apps.ggvertretungsplan.web.contentstorage.ContentStorage;
 import de.forro_apps.ggvertretungsplan.web.contentstorage.SubstitutionItem;
@@ -71,12 +68,12 @@ public class CustomListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getGroupCount() {
-        return (Variable.occupation == Occupation.STUDENT ? ContentStorage.Student.getNumberOfForms(day) : ContentStorage.Teacher.getNumberOfTeachers(day));
+        return (Occupation.selected == Occupation.STUDENT ? ContentStorage.Student.getNumberOfForms(day) : ContentStorage.Teacher.getNumberOfTeachers(day));
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return (Variable.occupation == Occupation.STUDENT ? ContentStorage.Student.getNumberOfClassesSubstitutions(day, groupPosition) : ContentStorage.Teacher.getNumberOfTeachersSubstitutions(day, groupPosition));
+        return (Occupation.selected == Occupation.STUDENT ? ContentStorage.Student.getNumberOfClassesSubstitutions(day, groupPosition) : ContentStorage.Teacher.getNumberOfTeachersSubstitutions(day, groupPosition));
     }
 
     @Override
@@ -107,13 +104,14 @@ public class CustomListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         TextView t = new TextView(context);
-        t.setText(Variable.occupation == Occupation.STUDENT ? ContentStorage.Student.getForm(day, groupPosition) : ContentStorage.Teacher.getTeacherName(day, groupPosition));
+        t.setText(Occupation.selected == Occupation.STUDENT ? ContentStorage.Student.getForm(day, groupPosition) : ContentStorage.Teacher.getTeacherName(day, groupPosition));
         t.setTextSize(20);
         t.setTypeface(t.getTypeface(), Typeface.BOLD);
         return t;
     }
 
     // Strike-Through: Fach, Raum, Vertreter
+    // NEW: Klassen
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
@@ -132,7 +130,7 @@ public class CustomListAdapter extends BaseExpandableListAdapter {
         ListDataView from = new ListDataView(context);
         ListDataView to = new ListDataView(context);
 
-        if (Variable.occupation == Occupation.STUDENT) {
+        if (Occupation.selected == Occupation.STUDENT) {
             // * DEBUG
             long startTime = System.currentTimeMillis();
             System.out.println("1: " + (System.currentTimeMillis() - startTime) + "ms");
@@ -284,7 +282,7 @@ public class CustomListAdapter extends BaseExpandableListAdapter {
             to.setNormalText(item.getTo());
 
             forms.setTitle("Klasse(n)");
-            forms.setNormalText(item.getClasses());
+            forms.organizeString(item.getClasses());
 
             if (!(item.getText().equals("&nbsp;") || item.getText().isEmpty() || item.getText().equals(" ") || item.getText().equals(" "))) {
                 text.setNormalText(item.getText());
