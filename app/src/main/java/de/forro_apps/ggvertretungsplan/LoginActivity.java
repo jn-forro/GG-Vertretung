@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.*;
@@ -73,6 +74,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnTouchList
 
         loading = findViewById(R.id.progressBar);
         loading.setVisibility(View.INVISIBLE);
+
+        password.setOnKeyListener((v, code, event) -> { // Hopefully not only for hardware keyboards
+            if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                    (code == KeyEvent.KEYCODE_ENTER)) {
+                confirm.performClick();
+                return true;
+            }
+            return false;
+        });
 
         Database.SQLMethods db = new Database.SQLMethods(getApplicationContext(), null);
         userName.setText(db.getLoginCredentials()[0]);
