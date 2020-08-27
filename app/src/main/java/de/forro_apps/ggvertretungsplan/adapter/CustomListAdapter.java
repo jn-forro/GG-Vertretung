@@ -114,6 +114,7 @@ public class CustomListAdapter extends BaseExpandableListAdapter {
     }
 
     // Strike-Through: Fach, Raum, Vertreter
+    // NEW: Klassen
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
@@ -284,7 +285,7 @@ public class CustomListAdapter extends BaseExpandableListAdapter {
             to.setNormalText(item.getTo());
 
             forms.setTitle("Klasse(n)");
-            forms.setNormalText(item.getClasses());
+            forms.organizeString(item.getClasses());
 
             if (!(item.getText().equals("&nbsp;") || item.getText().isEmpty() || item.getText().equals(" ") || item.getText().equals(" "))) {
                 text.setNormalText(item.getText());
