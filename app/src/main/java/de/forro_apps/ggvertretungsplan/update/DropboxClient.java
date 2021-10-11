@@ -15,7 +15,7 @@ public class DropboxClient {
     /**
      * Token to access the Dropbox app
      */
-    private final String ACCESS_TOKEN = "Bb5Jn5n2ODYAAAAAAAADCfquLz9mzpz-2TSdFK7C6vIr7THXIequ7eQYbKjO7eiV";
+    private final String ACCESS_TOKEN = ""; // Insert access token here
 
 
     private Context context;
